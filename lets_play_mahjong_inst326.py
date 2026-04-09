@@ -48,3 +48,116 @@ def turn_in_mahjong(hand, discard_tile, from_left):
             raise ValueError("Tile format invalid.")
         
     return "No moves can be made. Next turn!"
+
+
+def is_winning_hand(hand):
+    """
+    checks if the hand you have gives you a win
+    
+    args:
+    hand (list): list of 14 tiles that you have
+    
+    returns:
+    bool: True if it is a winning hand, False if its not winning
+    
+    Side effects:
+    None
+    
+    Raises: 
+    none
+    """
+    
+    if len(hand) != 14:
+        return False
+    
+    hand = sorted(hand)
+    
+    for i in range(len(hand)):
+        for j in range(i + 1, len(hand)):
+            
+            if hand[i] == hand[j]:
+                
+                new_hand = []
+                
+                for k in range(len(hand)):
+                    if k != i and k != j:
+                        new_hand.append(hand[k])
+                        
+                if can_make_sets(new_hand):
+                    return True
+    
+    return False
+
+def can_make_sets(hand):
+    """
+    Checks if the remaining tiles can be split into sets
+    
+    args:
+    hand(list): list of tiles leeft after removing a pair
+    
+    returns:
+    bool: True if the remaining tiles can make valid sets, False if they cant
+    
+    side effects:
+    None
+    
+    Raises:
+    none
+    """
+    
+    if len(hand) == 0:
+        return True
+    first = hand[0]
+    
+    count = 0
+    for tile in hand:
+        if tile == first:
+            count += 1
+            
+    if count >= 3:
+        new_hand = []
+        removed = 0
+        
+        for tile in hand:
+           if tile == first and removed < 3:
+               removed += 1
+           else:
+               new_hand.append(tile)
+        
+        if can_make_sets(sorted(new_hand)):
+            return True
+    if len(first) == 2 and first[0].isdigit():
+        number = int(first[0])
+        suit = first[1]
+        
+        second = str(number + 1) + suit
+        third = str(number + 2) + suit
+        
+        has_second = False
+        has_third = False
+        
+        for tile in hand:
+            if tile == second:
+                has_second = True
+            if tile == third:
+                has_third = True
+                
+        if has_second and has_third:
+            new_hand = []
+            removed_first = False
+            removed_second = False
+            removed_third = False
+            
+            for tile in hand:
+                if tile == first and removed_first == False:
+                    removed_first = True
+                elif tile == second and removed_second == False:
+                    removed_second = True
+                elif tile == third and removed_third == False:
+                    removed_third = True
+                else: 
+                    new_hand.append(tile)
+                    
+            if can_make_sets(sorted(new_hand)):
+                return True
+    return False
