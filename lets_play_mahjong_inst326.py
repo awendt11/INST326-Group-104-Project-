@@ -217,3 +217,56 @@ def choose_discard(hand):
     
     return worst_tile
 
+def steal_or_pass(hand, discard_tile):
+    """
+    Decide whether to steal a tile from the discard pile of tiles and if you 
+    steal a tile, determine which tile to discard in your hand to create 
+    your best possible hand. 
+    
+    
+    Args: 
+        hand(list of strings): A list of 13 tile identifiers representing the players 
+            current concealed hand 
+        discard_tile (str): A single tile identifier representing the tile just 
+            discarded by another player 
+        
+    Returns 
+        Str: if the player should steal: returns the tile to the discard 
+            after stealing a tile from the player. 
+            If the player should not steal: returns the string "pass" 
+    Side Effects: 
+        hand(list of strings): gets appended based on the new tile and discarded tile 
+    Raises: 
+        ValueError: If the hand does not contain exactly 13 tiles 
+    
+    
+    """
+
+    if len(hand) != 13: 
+        raise ValueError("Your hand must contain exactly 13 tiles")
+    
+    
+    potential_hand = hand + [discard_tile] 
+    
+    if is_winning_hand(potential_hand): 
+        steal_tile = True
+    elif hand.count(discard_tile) >=2: 
+        steal_tile = True 
+    else: 
+        steal_tile = False 
+    
+    
+    if steal_tile == True: 
+        hand.append(discard_tile)
+      
+        matchless_tile = [tile for tile in hand if hand.count(tile) ==1]
+        
+        if len(matchless_tile) >0: 
+            junk_tile = matchless_tile[0]
+        else: 
+            junk_tile = hand[0]
+            
+        hand.remove(junk_tile)
+        return junk_tile 
+    
+    return "pass" 
