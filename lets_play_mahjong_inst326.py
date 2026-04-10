@@ -161,3 +161,59 @@ def can_make_sets(hand):
             if can_make_sets(sorted(new_hand)):
                 return True
     return False
+
+
+def choose_discard(hand):
+    """
+    Chooses which tile a player should discard after drawing
+
+    Args:
+        hand(list of str): A list of 14 tile identifiers representing the 
+        player's current hand after drawing
+
+    Returns:
+        String: the tile that should be discarded
+
+    Side effects:
+        None
+
+    Raises:
+        ValueError: If the hand does not contain exactly 14 tiles or if any 
+        tile representation is incorrect
+        
+        ValueError: If tile does not contain 2 charactors. The tile number and 
+        suite type
+    """
+    if len(hand) != 14:
+        raise ValueError("Hand must contain exactly 14 tiles") 
+    # Hand must have 14 tiles
+
+    for tile in hand:
+        if len(tile) != 2 or not tile[0].isdigit():
+            raise ValueError("Tile representation is incorrect")
+        # each tile must be 2 charactors long like 3b or 7d
+
+    def score_tile(tile, tiles): # look at each tile
+        score = 0 
+        # set variable for score. lowest score (how useful it is) will be removed
+        number = int(tile[0]) # identify number for sequence
+        suit = tile[1] # identify suits
+
+        if tiles.count(tile) >= 2: # checks how many times tile appears
+            score += 3  
+
+        #check if tile has any concurent tiles (ex. 1b, 2b, 3b)
+        if f"{number-1}{suit}" in tiles:
+            score += 1
+        if f"{number+1}{suit}" in tiles:
+            score += 1
+        if f"{number-2}{suit}" in tiles:
+            score += 1
+        if f"{number+2}{suit}" in tiles:
+            score += 1
+
+        return score
+    worst_tile = hand[0] # which tile looks best to discard
+    
+    return worst_tile
+
