@@ -17,7 +17,13 @@ def turn_in_mahjong(hand, discard_tile, from_left):
         ValueError if the move is not allowed 
         IndexError if tile string isn't number + suit format
     """
-    
+    # Relying on tiles having letters abbreviation for bamboo dots and characters
+    if (
+        len(discard_tile) != 2 or
+        not discard_tile[0].isdigit() or
+        discard_tile[1] not in ["B", "D", "C"]
+    ):
+        raise ValueError("Invalid tile format.")
 # Check for Pong, which can made formed if player already has two matching tiles
     if hand.count(discard_tile) >= 2:
         hand.remove(discard_tile)
