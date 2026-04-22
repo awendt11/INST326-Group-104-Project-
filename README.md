@@ -8,7 +8,7 @@ Contributions:
 |-----------------|----------------|---------------------------|
 | turn_in_mahjong | Anna Wendt     | f-strings                 |
 | Value D         | Value E        | Value F                   |
-
+| steal_or_pass   | Noah Rosier    | List Comprehensions       |
 Annotated References:
 (2019). The Mahjong Project. The Mahjong Project. https://www.themahjongproject.com/how-to-play/basics
 This source was used to understand the basic rules of Chinese Mahjong, and therefore implement those rules into an algorithm. 
