@@ -1,6 +1,14 @@
 # INST326-Group-104-Project-
 
 
+
+
+Contributions:
+| Method/Function | Primary Author | Technique(s) Demonstrated |
+|-----------------|----------------|---------------------------|
+| turn_in_mahjong | Anna Wendt     | f-strings                 |
+| Value D         | Value E        | Value F                   |
+
 Annotated References:
 (2019). The Mahjong Project. The Mahjong Project. https://www.themahjongproject.com/how-to-play/basics
 This source was used to understand the basic rules of Chinese Mahjong, and therefore implement those rules into an algorithm. 
