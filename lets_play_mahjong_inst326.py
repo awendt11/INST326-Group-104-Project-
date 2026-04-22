@@ -25,6 +25,7 @@ def turn_in_mahjong(hand, discard_tile, from_left):
     ):
         raise ValueError("Invalid tile format.")
 # Check for Pong, which can made formed if player already has two matching tiles
+# Use of f string
     if hand.count(discard_tile) >= 2:
         hand.remove(discard_tile)
         hand.remove(discard_tile)
@@ -38,6 +39,7 @@ def turn_in_mahjong(hand, discard_tile, from_left):
             tile_suit = discard_tile[1]
             
             # Assuming we do a number + suit abbreviation for tiles
+            # Use of f strings
             possible_chow_sequences = [
                 [f"{tile_number-2}{tile_suit}", f"{tile_number-1}{tile_suit}"],
                 [f"{tile_number-1}{tile_suit}", f"{tile_number+1}{tile_suit}"],
