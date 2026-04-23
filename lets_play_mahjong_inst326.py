@@ -1,8 +1,6 @@
 def turn_in_mahjong(hand, discard_tile, from_left):
     """
     Run one Mahjong turn and determine what actions are allowed after a tile is discarded. 
-    Author: Anna
-    Technique(s): f-strings
 
     Args: 
 	    hand (list of strings): The tiles currently in the player's hand
