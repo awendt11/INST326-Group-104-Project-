@@ -170,6 +170,32 @@ def can_make_sets(hand):
                 return True
     return False
 
+# Added this function to analyze the players hand and help the player in deciding how
+# strong their hand is, maybe helping them figure out what to discard?
+# We can remove it too if it doesn't work in the end, satisifes set or composition requirement
+def hand_summary(hand):
+    """
+    Review and summarize hand in Mahjong to analyze tiles and duplicates.
+    
+    Args:
+        hand: (list of str): Tiles in players hand
+        
+    Returns:
+        dict: Information about the players hand
+    """
+    
+    tile_set = set(hand)
+    
+    counts = {tile: hand.count(tile) for tile in tile_set}
+    
+    repeat_tiles = {tile for tile in tile_set if counts[tile] > 1}
+    
+    return {
+        "tile_set" : tile_set,
+        "counts" : counts,
+        "repeat_tiles" : repeat_tiles
+    }
+    
 
 def choose_discard(hand):
     """
