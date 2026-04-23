@@ -170,9 +170,15 @@ def can_make_sets(hand):
                 return True
     return False
 
+# Small function with conditional expression
+# Makes the data for the next function a little more readable for players rather than just
+# giving the number of the tiles
+def tile_classification(tile_count):
+    return "single" if tile_count == 1 else "pair" if tile_count == 2 else "multiple"
+
 # Added this function to analyze the players hand and help the player in deciding how
 # strong their hand is, maybe helping them figure out what to discard?
-# We can remove it too if it doesn't work in the end, satisifes set or composition requirement
+# We can remove it too if it doesn't work in the end
 def hand_summary(hand):
     """
     Review and summarize hand in Mahjong to analyze tiles and duplicates.
