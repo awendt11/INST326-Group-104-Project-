@@ -8,16 +8,16 @@ class Mahjong:
     
     Attributes: 
         tile_deck (list): the shared deck of tiles 
-        players (list): a list of the 3 players in the game 
+        player_names (list): a list of the 3 players in the game 
         
     """
-    def __init__(self, players): 
+    def __init__(self, player_names): 
         """
         Intializes the deck with the tiles. 
         
         Args: 
         
-            players (list): A list of strings containg the name of players 
+            player_names (list): A list of strings containg the name of players 
         
          """
         self.tile_deck = []
@@ -26,9 +26,9 @@ class Mahjong:
         for suit in suits: 
             for number in range(1,10): 
                 for count in range(4): 
-                    self.deck.append(f"{number}{suit}")
+                    self.tile_deck.append(f"{number}{suit}")
          
-        self.players = [Player(name) for name in Player]
+        self.players = [Player(name) for name in player_names]
         
     def deal(self): 
         """
