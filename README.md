@@ -1,17 +1,19 @@
 # INST326-Group-104-Project-
 
-Explanation of Files:
+### **Explanation of Files:**
 
-lets_play_mahjong: Main file containing Mahjong game. 
+**lets_play_mahjong:** Main file containing Mahjong game. 
 
-README.md: ReadMe file containing explanations on how to run and use the program, proper files, group member contributions, and annotated references. Essentially, this acts as a user guide to get started with playing our game of Mahjong. 
-
-How to Run the Program from the Command Line:
-
-How to Use the Program:
+**README.md:** ReadMe file containing explanations on how to run and use the program, proper files, group member contributions, and annotated references. Essentially, this acts as a user guide to get started with playing our game of Mahjong. 
 
 
-Contributions:
+### **How to Run the Program from the Command Line:**
+
+
+### **How to Use the Program:**
+
+
+### **Contributions:**
 | Method/Function    | Primary Author | Technique(s) Demonstrated |
 |------------------- |----------------|---------------------------|
 | turn_in_mahjong    | Anna Wendt     | f-strings                 |
@@ -21,7 +23,7 @@ Contributions:
 
 
 
-Annotated References:
+### **Annotated References:**
 
 (2019). The Mahjong Project. The Mahjong Project. https://www.themahjongproject.com/how-to-play/basics
 This source was used to understand the basic rules of Chinese Mahjong, and therefore implement those rules into an algorithm. 
