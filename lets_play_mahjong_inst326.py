@@ -159,7 +159,7 @@ def can_make_sets(hand):
     Checks if the remaining tiles can be split into sets
     
     args:
-    hand(list): list of tiles leeft after removing a pair
+    hand(list): list of tiles left after removing a pair
     
     returns:
     bool: True if the remaining tiles can make valid sets, False if they cant
