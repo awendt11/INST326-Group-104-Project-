@@ -1,3 +1,61 @@
+import argparse 
+import json 
+
+
+class Mahjong: 
+    """
+    Manages the state of the Mahjong game and the logic of the game. 
+    
+    Attributes: 
+        tile_deck (list): the shared deck of tiles 
+        player_names (list): a list of the 3 players in the game 
+        
+    """
+    def __init__(self, player_names): 
+        """
+        Intializes the deck with the tiles. 
+        
+        Args: 
+        
+            player_names (list): A list of strings containg the name of players 
+        
+         """
+        self.tile_deck = []
+        suits = ['B', 'D', 'C'] 
+        
+        for suit in suits: 
+            for number in range(1,10): 
+                for count in range(4): 
+                    self.tile_deck.append(f"{number}{suit}")
+         
+        self.players = [Player(name) for name in player_names]
+        
+    def deal(self): 
+        """
+        Deals 13 tiles to each player from the tile deck
+        """
+        for player in self.players: 
+            for item in range(13): 
+                player.hand.append(self.tile_deck.pop())
+                
+class Player: 
+    """
+    Represents an individual player in our Mahjong Game. 
+    
+    Attributes: 
+    
+        name (str): the name of the player 
+        hand (list): a list of strings representing the players current hand 
+    
+    """
+    
+    def __init__(self, name): 
+        self.name = name 
+        self.hand = [] 
+
+        
+    
+
 def turn_in_mahjong(hand, discard_tile, from_left):
     """
     Run one Mahjong turn and determine what actions are allowed after a tile is discarded. 

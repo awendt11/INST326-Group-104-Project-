@@ -4,11 +4,13 @@
 
 
 Contributions:
-| Method/Function | Primary Author | Technique(s) Demonstrated |
-|-----------------|----------------|---------------------------|
-| turn_in_mahjong | Anna Wendt     | f-strings                 |
-| Value D         | Value E        | Value F                   |
-| steal_or_pass   | Noah Rosier    | List Comprehensions       |
+| Method/Function    | Primary Author | Technique(s) Demonstrated |
+|------------------- |----------------|---------------------------|
+| turn_in_mahjong    | Anna Wendt     | f-strings                 |
+| hand_summary       | Anna Wendt     |                           |
+| steal_or_pass      | Noah Rosier    | List Comprehensions       |
+| tile_classification| Anna Wendt     | Conditional Expression    |
+
 
 
 Annotated References:
