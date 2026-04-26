@@ -253,8 +253,7 @@ def choose_discard(hand):
             score += 1
 
         return score
-    worst_tile = hand[0] # which tile looks best to discard
-    
+    worst_tile = min(hand, key=lambda tile: score_tile(tile, hand)) # which tile looks best to discard
     return worst_tile
 
 def steal_or_pass(hand, discard_tile):
