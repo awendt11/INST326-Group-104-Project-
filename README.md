@@ -1,7 +1,9 @@
 # INST326-Group-104-Project-
 
 Explanation of Files:
+
 lets_play_mahjong: Main file containing Mahjong game. 
+
 README.md: ReadMe file containing explanations on how to run and use the program, proper files, group member contributions, and annotated references. Essentially, this acts as a user guide to get started with playing our game of Mahjong. 
 
 How to Run the Program from the Command Line:
