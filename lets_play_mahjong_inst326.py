@@ -1,6 +1,6 @@
 import argparse 
 import json 
-
+import random
 
 class Mahjong: 
     """
@@ -22,6 +22,7 @@ class Mahjong:
          """
         self.tile_deck = []
         suits = ['B', 'D', 'C'] 
+        
         
         for suit in suits: 
             for number in range(1,10): 
