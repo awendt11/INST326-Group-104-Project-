@@ -28,6 +28,7 @@ class Mahjong:
             for number in range(1,10): 
                 for count in range(4): 
                     self.tile_deck.append(f"{number}{suit}")
+        random.shuffle(self.tile_deck)
          
         self.players = [Player(name) for name in player_names]
         
