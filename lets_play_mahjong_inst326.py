@@ -399,3 +399,45 @@ def steal_or_pass(hand, discard_tile):
         return junk_tile 
     
     return "pass" 
+
+def player_turn(player, game, human_turn): 
+    """
+    Executes a full turn in mahjong for a player. Draws a tile, then
+    checks if that tile gives them a mahjong, and selecting a tile to discard. 
+    
+    Author: Noah 
+    Techniques: Use of a key function with the sorted command 
+    
+    Args: 
+    
+    Returns: 
+    
+       
+
+    """
+    if len(game.tile_deck) == 0: 
+        return f"(Deck is empty)", None 
+    
+    tile = game.tile_deck.pop()
+    player.hand.append(tile)
+
+    print(f"{player.name} draws {tile}")
+    
+    if is_winning_hand(player.hand): 
+        print(f"{player.name} wins")
+        return "win", None 
+    
+    sorted_hand = sorted(player.hand, key=lambda tile: (tile[1], int(tile[0])))
+    if human_turn: 
+        print("Your hand is:", sorted_hand)
+        
+        discard = input("Choose a tile to discard: ").strip()
+        while discard not in player.hand: 
+            discard = input("Invalid tile to discard. Pick a new tile to discard: ").strip()
+    else: 
+        discard = choose_discard(player.hand)
+    player.hand.remove(discard)
+    print(f"{player.name} discards {discard}")
+            
+    return "continue", discard     
+        
