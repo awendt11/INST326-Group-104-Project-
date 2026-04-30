@@ -1,6 +1,25 @@
 import argparse 
 import json 
 
+def tiles_implementation(filename="tiles.txt"):
+    """
+    Loads tiles from a file.
+    
+    Args:
+        filename: (str): File name
+        
+    Returns:
+        list: List of the tile strings
+    """
+    tiles = []
+    
+    with open(filename, "r") as file:
+        for line in file:
+            tile = line.strip()
+            if tile:
+                tiles.append(tile)
+                
+    return tiles
 
 class Mahjong: 
     """
@@ -20,6 +39,10 @@ class Mahjong:
             player_names (list): A list of strings containg the name of players 
         
          """
+        
+        self.tile_deck = tiles_implementation()
+        self.players = [Player(name) for name in player_names]
+        # I think we may need to replace everything in init under with what I just put above since i added text file?
         self.tile_deck = []
         suits = ['B', 'D', 'C'] 
         
