@@ -20,7 +20,7 @@
 | Method/Function      | Primary Author | Technique(s) Demonstrated      |
 |---------------------|----------------|-------------------------------|
 | turn_in_mahjong     | Anna Wendt     | f-strings                     |
-| hand_summary        | Anna Wendt     | set operations, comprehension |
+| hand_summary        | Anna Wendt     |                               |
 | steal_or_pass       | Noah Rosier    | list comprehension            |
 | tile_classification | Anna Wendt     | conditional expression        |
 | tiles_implementation| Anna Wendt     | with statement                |
