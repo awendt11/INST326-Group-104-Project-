@@ -14,6 +14,7 @@
 
 
 ### **Contributions:**
+
 | Method/Function     | Primary Author | Technique(s) Demonstrated |
 |------------------- -|----------------|---------------------------|
 | turn_in_mahjong     | Anna Wendt     | f-strings                 |
