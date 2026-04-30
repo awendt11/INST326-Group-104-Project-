@@ -1,5 +1,6 @@
 import argparse 
 import json 
+import random
 
 def tiles_implementation(filename="tiles.txt"):
     """
@@ -49,10 +50,12 @@ class Mahjong:
         self.tile_deck = []
         suits = ['B', 'D', 'C'] 
         
+        
         for suit in suits: 
             for number in range(1,10): 
                 for count in range(4): 
                     self.tile_deck.append(f"{number}{suit}")
+        random.shuffle(self.tile_deck)
          
         self.players = [Player(name) for name in player_names]
         
