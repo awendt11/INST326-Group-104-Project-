@@ -2,7 +2,9 @@
 
 ### **Explanation of Files:**
 
-**lets_play_mahjong:** Main file containing Mahjong game. 
+**lets_play_mahjong:** Main python file containing Mahjong game. 
+
+**tiles.txt**: Text file containing 108 Mahjong tiles.
 
 **README.md:** ReadMe file containing explanations on how to run and use the program, proper files, group member contributions, and annotated references. Essentially, this acts as a user guide to get started with playing our game of Mahjong. 
 
@@ -14,12 +16,14 @@
 
 
 ### **Contributions:**
-| Method/Function    | Primary Author | Technique(s) Demonstrated |
-|------------------- |----------------|---------------------------|
-| turn_in_mahjong    | Anna Wendt     | f-strings                 |
-| hand_summary       | Anna Wendt     |                           |
-| steal_or_pass      | Noah Rosier    | List Comprehensions       |
-| tile_classification| Anna Wendt     | Conditional Expression    |
+
+| Method/Function      | Primary Author | Technique(s) Demonstrated      |
+|---------------------|----------------|-------------------------------|
+| turn_in_mahjong     | Anna Wendt     | f-strings                     |
+| hand_summary        | Anna Wendt     | set operations, comprehension |
+| steal_or_pass       | Noah Rosier    | list comprehension            |
+| tile_classification | Anna Wendt     | conditional expression        |
+| tiles_implementation| Anna Wendt     | with statement                |
 
 
 
