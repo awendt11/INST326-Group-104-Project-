@@ -14,12 +14,14 @@
 
 
 ### **Contributions:**
-| Method/Function    | Primary Author | Technique(s) Demonstrated |
-|------------------- |----------------|---------------------------|
-| turn_in_mahjong    | Anna Wendt     | f-strings                 |
-| hand_summary       | Anna Wendt     |                           |
-| steal_or_pass      | Noah Rosier    | List Comprehensions       |
-| tile_classification| Anna Wendt     | Conditional Expression    |
+| Method/Function     | Primary Author | Technique(s) Demonstrated |
+|------------------- -|----------------|---------------------------|
+| turn_in_mahjong     | Anna Wendt     | f-strings                 |
+| hand_summary        | Anna Wendt     |                           |
+| steal_or_pass       | Noah Rosier    | List Comprehensions       |
+| tile_classification | Anna Wendt     | Conditional Expression    |
+| tiles_implementation| Anna Wendt     | with statement            |
+
 
 
 
