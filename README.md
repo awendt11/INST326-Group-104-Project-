@@ -22,6 +22,7 @@
 | turn_in_mahjong     | Anna Wendt     | f-strings                     |
 | hand_summary        | Anna Wendt     |                               |
 | steal_or_pass       | Noah Rosier    | list comprehension            |
+| player_turn         | Noah Rosier    | Use of a key function         | 
 | tile_classification | Anna Wendt     | conditional expression        |
 | tiles_implementation| Anna Wendt     | with statement                |
 
