@@ -10,6 +10,9 @@ def tiles_implementation(filename="tiles.txt"):
         
     Returns:
         list: List of the tile strings
+        
+    Author: Anna
+    Includes: with statement
     """
     tiles = []
     
@@ -97,6 +100,9 @@ def turn_in_mahjong(hand, discard_tile, from_left):
     Raises:
         ValueError if the move is not allowed 
         IndexError if tile string isn't number + suit format
+        
+    Author: Anna
+    Includes: f strings
     """
     # Relying on tiles having letters abbreviation for bamboo dots and characters
     if (
