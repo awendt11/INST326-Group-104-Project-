@@ -313,13 +313,15 @@ def choose_discard(hand):
         
         ValueError: If tile does not contain 2 charactors. The tile number and 
         suite type
+    
+    Author: Nathan Brock
     """
     if len(hand) != 14:
         raise ValueError("Hand must contain exactly 14 tiles") 
     # Hand must have 14 tiles
 
     for tile in hand:
-        if len(tile) != 2 or not tile[0].isdigit():
+        if len(tile) != 2 or not tile[0].isdigit(): # conditional expression
             raise ValueError("Tile representation is incorrect")
         # each tile must be 2 charactors long like 3b or 7d
 
@@ -440,4 +442,45 @@ def player_turn(player, game, human_turn):
     print(f"{player.name} discards {discard}")
             
     return "continue", discard     
-        
+
+
+
+def check_steal_options(players, current_index, discard):
+    """
+    Checks if a player can steal the discarded tile to make a Pong or Chow
+
+    Args:
+        players: List of Player objects
+        current_index: Index of the player who discarded last
+        discard: The tile that was last discarded
+
+    Returns: 
+        If someone steals it returns (player_index, new_discard)
+        If nobody steals it returns (None, discard)
+    """
+
+    for offset in range(1, len(players)):
+
+        player_index = (current_index + offset) % len(players) # next player
+        player = players[player_index]
+
+        # player after can discard
+        if offset == 1:
+            from_left = True
+        else:
+            from_left = False
+
+        action = turn_in_mahjong(player.hand, discard, from_left)
+
+        if "Pong" in action or "Chow" in action:
+            print(f"{player.name} steals {discard}")
+            print(action)
+
+            new_discard = choose_discard(player.hand)
+            player.hand.remove(new_discard)
+
+            print(f"{player.name} discards {new_discard}")
+
+            return player_index, new_discard
+
+    return None, discard
