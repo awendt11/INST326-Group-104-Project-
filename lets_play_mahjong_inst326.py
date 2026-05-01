@@ -45,19 +45,13 @@ class Mahjong:
          """
         
         self.tile_deck = tiles_implementation()
-        self.players = [Player(name) for name in player_names]
-        # I think we may need to replace everything in init under with what I just put above since i added text file?
-        self.tile_deck = []
-        suits = ['B', 'D', 'C'] 
-        
-        
-        for suit in suits: 
-            for number in range(1,10): 
-                for count in range(4): 
-                    self.tile_deck.append(f"{number}{suit}")
         random.shuffle(self.tile_deck)
-         
-        self.players = [Player(name) for name in player_names]
+
+        self.players = []
+
+        for name in player_names:
+            new_player = Player(name)
+            self.players.append(new_player)
         
     def deal(self): 
         """
@@ -439,5 +433,98 @@ def player_turn(player, game, human_turn):
     player.hand.remove(discard)
     print(f"{player.name} discards {discard}")
             
-    return "continue", discard     
+    return "continue", discard  
+
+def get_next_player_index(current_index, number_of_players):
+    """
+    Gets the next player in the turn order
+    
+    Args:
+    current_index (int): The current players spot in the list
+    number_of_players(int): The total number of players in the game
+    
+    Returns:
+    int: The next players spot in the players list
+    
+    Side effects:
+    None
+    
+    Raises: None
+    """
+    
+    next_index = current_index + 1
         
+    if next_index == number_of_players:
+        next_index = 0
+        
+    return next_index
+
+def game_loop(game):
+    """
+    Runs the main part of the game after everything is set up
+    
+    Args:
+    game(Mahjong): the game that is being played
+    
+    Returns: 
+    None
+    
+    Side effects:
+    keeps calling each players turn, moves to the next player, 
+    and prints updates while the game is running
+    
+    Raises: 
+    None
+    
+    """
+    
+    current_player_index = 0
+    
+    while len(game.tile_deck) > 0: 
+        current_player = game.players[current_player_index]
+        
+        if current_player_index == 0: 
+            human_turn = True
+        else:
+            human_turn = False
+            
+        result, discard_tile = player_turn(current_player, game, human_turn)
+        
+        if result == "win":
+            print("game over")
+            return
+        current_player_index = get_next_player_index(current_player_index,
+                                             len(game.players))
+        
+    print("the deck is empty. no winner")
+    
+def main(): 
+    """
+    Starts the game
+    
+    Args: None
+    
+    Returns: None
+    
+    Side effects: Sets up the player names, creates the game, deals the tiles,
+    and start the game loop
+    
+    Raises: None
+    """
+    
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--players", nargs=3, default=["You", "Computer 1", "Computer 2"])
+
+    args = parser.parse_args()
+
+    game = Mahjong(args.players)
+    game.deal()
+
+    print("Starting Mahjong game!")
+
+    game_loop(game)
+        
+    
+if __name__ == "__main__":
+    main()
