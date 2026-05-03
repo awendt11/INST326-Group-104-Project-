@@ -264,6 +264,23 @@ def can_make_sets(hand):
 # Makes the data for the next function a little more readable for players rather than just
 # giving the number of the tiles
 def tile_classification(tile_count):
+    """
+    Classifies a tile according to how many times its in an individual's hand.
+    
+    Args:
+        tile_count: int, Number of times a tile appears.
+        
+    Returns:
+        str: A keyword that describes how many times the tile occurs in an individual's hand.
+        Including single, pair and multiple. 
+        
+    Side effects:
+        None
+        
+    Raises:
+        None
+    """
+    
     return "single" if tile_count == 1 else "pair" if tile_count == 2 else "multiple"
 
 # Added this function to analyze the players hand and help the player in deciding how
