@@ -45,19 +45,13 @@ class Mahjong:
          """
         
         self.tile_deck = tiles_implementation()
-        self.players = [Player(name) for name in player_names]
-        # I think we may need to replace everything in init under with what I just put above since i added text file?
-        self.tile_deck = []
-        suits = ['B', 'D', 'C'] 
-        
-        
-        for suit in suits: 
-            for number in range(1,10): 
-                for count in range(4): 
-                    self.tile_deck.append(f"{number}{suit}")
         random.shuffle(self.tile_deck)
-         
-        self.players = [Player(name) for name in player_names]
+
+        self.players = []
+
+        for name in player_names:
+            new_player = Player(name)
+            self.players.append(new_player)
         
     def deal(self): 
         """
@@ -330,13 +324,15 @@ def choose_discard(hand):
         
         ValueError: If tile does not contain 2 charactors. The tile number and 
         suite type
+    
+    Author: Nathan Brock
     """
     if len(hand) != 14:
         raise ValueError("Hand must contain exactly 14 tiles") 
     # Hand must have 14 tiles
 
     for tile in hand:
-        if len(tile) != 2 or not tile[0].isdigit():
+        if len(tile) != 2 or not tile[0].isdigit(): # conditional expression
             raise ValueError("Tile representation is incorrect")
         # each tile must be 2 charactors long like 3b or 7d
 
@@ -416,3 +412,92 @@ def steal_or_pass(hand, discard_tile):
         return junk_tile 
     
     return "pass" 
+
+def player_turn(player, game, human_turn): 
+    """
+    Executes a full turn in mahjong for a player. Draws a tile, then
+    checks if that tile gives them a mahjong, and selecting a tile to discard. 
+    
+    Author: Noah 
+    Techniques: Use of a key function with the sorted command 
+    
+    Args: 
+    
+    Returns: 
+    
+       
+
+    """
+    if len(game.tile_deck) == 0: 
+        return f"(Deck is empty)", None 
+    
+    tile = game.tile_deck.pop()
+    player.hand.append(tile)
+
+    print(f"{player.name} draws {tile}")
+    
+    if is_winning_hand(player.hand): 
+        print(f"{player.name} wins")
+        return "win", None 
+    
+    sorted_hand = sorted(player.hand, key=lambda tile: (tile[1], int(tile[0])))
+    if human_turn: 
+        print("Your hand is:", sorted_hand)
+        
+        discard = input("Choose a tile to discard: ").strip()
+        while discard not in player.hand: 
+            discard = input("Invalid tile to discard. Pick a new tile to discard: ").strip()
+    else: 
+        discard = choose_discard(player.hand)
+    player.hand.remove(discard)
+    print(f"{player.name} discards {discard}")
+            
+    return "continue", discard     
+
+
+def check_steal_options(players, current_index, discard):
+    """
+    Checks if a player can steal the discarded tile to make a Pong or Chow
+
+    Args:
+        players: List of Player objects
+        current_index: Index of the player who discarded last
+        discard: The tile that was last discarded
+
+    Returns:
+        If someone steals it returns (player_index, new_discard)
+        If nobody steals it returns (None, discard)
+    """
+    for offset in range(1, len(players)):
+
+
+        player_index = (current_index + offset) % len(players) # next player
+        player = players[player_index]
+
+
+        # player after can discard
+        if offset == 1:
+            from_left = True
+        else:
+            from_left = False
+
+
+        action = turn_in_mahjong(player.hand, discard, from_left)
+
+
+        if "Pong" in action or "Chow" in action:
+            print(f"{player.name} steals {discard}")
+            print(action)
+
+
+            new_discard = choose_discard(player.hand)
+            player.hand.remove(new_discard)
+
+
+            print(f"{player.name} discards {new_discard}")
+
+
+            return player_index, new_discard
+
+
+    return None, discard
