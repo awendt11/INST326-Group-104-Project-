@@ -96,7 +96,6 @@ def turn_in_mahjong(hand, discard_tile, from_left):
     
     Raises:
         ValueError if the move is not allowed 
-        IndexError if tile string isn't number + suit format
         
     Author: Anna
     Includes: f strings
@@ -146,17 +145,17 @@ def is_winning_hand(hand):
     """
     checks if the hand you have gives you a win
     
-    args:
-    hand (list): list of 14 tiles that you have
+    Args:
+        hand (list): list of 14 tiles that you have
     
-    returns:
-    bool: True if it is a winning hand, False if its not winning
+    Returns:
+        bool: True if it is a winning hand, False if its not winning
     
     Side effects:
-    None
+        None
     
     Raises: 
-    none
+        None
     """
     
     if len(hand) != 14:
@@ -184,17 +183,17 @@ def can_make_sets(hand):
     """
     Checks if the remaining tiles can be split into sets
     
-    args:
-    hand(list): list of tiles left after removing a pair
+    Args:
+        hand(list): list of tiles left after removing a pair
     
-    returns:
-    bool: True if the remaining tiles can make valid sets, False if they cant
+    Returns:
+        bool: True if the remaining tiles can make valid sets, False if they cant
     
-    side effects:
-    None
+    Side effects:
+        None
     
     Raises:
-    none
+        None
     """
     
     if len(hand) == 0:
