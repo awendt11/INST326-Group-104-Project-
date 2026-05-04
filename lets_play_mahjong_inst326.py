@@ -100,29 +100,25 @@ def turn_in_mahjong(hand, discard_tile, from_left):
     Author: Anna
     Includes: f strings
     """
-    # Relying on tiles having letters abbreviation for bamboo dots and characters
+    
     if (
         len(discard_tile) != 2 or
         not discard_tile[0].isdigit() or
         discard_tile[1] not in ["B", "D", "C"]
     ):
         raise ValueError("Invalid tile format.")
-# Check for Pong, which can made formed if player already has two matching tiles
-# Use of f string
+
     if hand.count(discard_tile) >= 2:
         hand.remove(discard_tile)
         hand.remove(discard_tile)
         return f"Pong formed with the discarded {discard_tile}!"
     
-# Check for Chow, which is formed with three consecutive numbers of the same suit
-# Chow only allowed if tile came from player on the left
     if from_left:
         try:
             tile_number = int(discard_tile[0])
             tile_suit = discard_tile[1]
             
-            # Assuming we do a number + suit abbreviation for tiles
-            # Use of f strings
+         
             possible_chow_sequences = [
                 [f"{tile_number-2}{tile_suit}", f"{tile_number-1}{tile_suit}"],
                 [f"{tile_number-1}{tile_suit}", f"{tile_number+1}{tile_suit}"],
@@ -253,9 +249,7 @@ def can_make_sets(hand):
                 return True
     return False
 
-# Small function with conditional expression
-# Makes the data for the next function a little more readable for players rather than just
-# giving the number of the tiles
+
 def tile_classification(tile_count):
     """
     Classifies a tile according to how many times its in an individual's hand.
@@ -272,13 +266,13 @@ def tile_classification(tile_count):
         
     Raises:
         None
+        
+    Author: Anna Wendt
     """
     
     return "single" if tile_count == 1 else "pair" if tile_count == 2 else "multiple"
 
-# Added this function to analyze the players hand and help the player in deciding how
-# strong their hand is, maybe helping them figure out what to discard?
-# We can remove it too if it doesn't work in the end
+
 def hand_summary(hand):
     """
     Review and summarize hand in Mahjong to analyze tiles and duplicates.
@@ -288,6 +282,8 @@ def hand_summary(hand):
         
     Returns:
         dict: Information about the players hand
+        
+    Author: Anna Wendt
     """
     
     tile_set = set(hand)
