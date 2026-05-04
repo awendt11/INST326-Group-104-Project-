@@ -20,11 +20,13 @@
 | Method/Function      | Primary Author | Technique(s) Demonstrated      |
 |---------------------|----------------|-------------------------------|
 | turn_in_mahjong     | Anna Wendt     | f-strings                     |
-| hand_summary        | Anna Wendt     |                               |
+| tiles_implementation| Anna Wendt     | with statement                | 
 | steal_or_pass       | Noah Rosier    | list comprehension            |
 | player_turn         | Noah Rosier    | Use of a key function         | 
-| tile_classification | Anna Wendt     |                               |
-| tiles_implementation| Anna Wendt     | with statement                |
+| check_steal_options | Nathan Brock   |                               | 
+| choose_discard.     | Nathan Brock   | Conditional Expression        | 
+|                     | William Horan  |                               |
+|                     | William Horan  |                               | 
 
 
 

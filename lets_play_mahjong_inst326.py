@@ -496,3 +496,112 @@ def check_steal_options(players, current_index, discard):
 
 
     return None, discard
+
+def get_next_player_index(current_index, number_of_players):
+    """
+    Gets the next player's index.
+
+    Args:
+        current_index (int): The index of the current player
+        number_of_players (int): The number of players
+
+    Returns:
+        int: The next player's index
+
+    Side effects:
+        None
+
+    Raises:
+        None
+    """
+
+    current_index = current_index + 1
+
+    if current_index == number_of_players:
+        current_index = 0
+
+    return current_index
+
+
+def game_loop(game):
+    """
+    Runs the game after the players are made and the tiles are dealt.
+
+    Args:
+        game (Mahjong): The Mahjong game
+
+    Returns:
+        None
+
+    Side effects:
+        Prints the game to the console and changes player hands
+
+    Raises:
+        None
+    """
+
+    current_player_index = 0
+    game_is_running = True
+
+    while game_is_running:
+        if len(game.tile_deck) == 0:
+            print("The deck is empty. No winner.")
+            game_is_running = False
+        else:
+            current_player = game.players[current_player_index]
+
+            if current_player_index == 0:
+                human_turn = True
+            else:
+                human_turn = False
+
+            result, discard_tile = player_turn(current_player, game, human_turn)
+
+            if result == "win":
+                print("Game over.")
+                game_is_running = False
+            else:
+                current_player_index = get_next_player_index(
+                    current_player_index,
+                    len(game.players)
+                )
+
+
+def main():
+    """
+    Starts the Mahjong game.
+
+    Args:
+        None
+
+    Returns:
+        None
+
+    Side effects:
+        Creates the game, deals the tiles, and starts the game loop
+
+    Raises:
+        None
+    """
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--players", nargs=3, default=["You", "Computer 1", "Computer 2"])
+
+    args = parser.parse_args()
+
+    game = Mahjong(args.players)
+    game.deal()
+
+    print("Starting Mahjong game!")
+    print("You are Player 1.")
+    print("Type the tile you want to discard when it is your turn.")
+    print()
+
+    game_loop(game)
+
+
+if __name__ == "__main__":
+    main()
+
+
