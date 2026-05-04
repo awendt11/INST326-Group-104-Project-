@@ -25,8 +25,8 @@
 | player_turn         | Noah Rosier    | Use of a key function         | 
 | check_steal_options | Nathan Brock   |                               | 
 | choose_discard.     | Nathan Brock   | Conditional Expression        | 
-|                     | William Horan  |                               |
-|                     | William Horan  |                               | 
+| is_winning_hand     | William Horan  | comprehensions                |
+| can_make_sets       | William Horan  | sequence unpacking            | 
 
 
 
