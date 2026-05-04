@@ -25,6 +25,8 @@
 | player_turn         | Noah Rosier    | Use of a key function         | 
 | tile_classification | Anna Wendt     |                               |
 | tiles_implementation| Anna Wendt     | with statement                |
+| check_steal_options | Nathan Brock   |                               |
+| choose_discard      | Nathan Brock   | Conditional Expression        |
 
 
 
