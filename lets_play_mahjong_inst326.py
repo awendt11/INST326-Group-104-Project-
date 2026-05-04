@@ -164,11 +164,8 @@ def is_winning_hand(hand):
             
             if hand[i] == hand[j]:
                 
-                new_hand = []
-                
-                for k in range(len(hand)):
-                    if k != i and k != j:
-                        new_hand.append(hand[k])
+                new_hand = [hand[k] for k in range(len(hand)) 
+                            if k != i and k != j]
                         
                 if can_make_sets(new_hand):
                     return True
@@ -214,8 +211,8 @@ def can_make_sets(hand):
         if can_make_sets(sorted(new_hand)):
             return True
     if len(first) == 2 and first[0].isdigit():
-        number = int(first[0])
-        suit = first[1]
+        number_text, suit = first
+        number = int(number_text)
         
         second = str(number + 1) + suit
         third = str(number + 2) + suit
