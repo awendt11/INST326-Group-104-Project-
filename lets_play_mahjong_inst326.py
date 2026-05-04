@@ -464,31 +464,60 @@ def check_steal_options(players, current_index, discard):
         If nobody steals it returns (None, discard)
     """
     for offset in range(1, len(players)):
-
-
-        player_index = (current_index + offset) % len(players) # next player
+        player_index = (current_index + offset) % len(players)
         player = players[player_index]
 
+        can_steal = False
 
-        # player after can discard
+        if player.hand.count(discard) >= 2:
+            can_steal = True
+
         if offset == 1:
-            from_left = True
-        else:
-            from_left = False
+            number = int(discard[0])
+            suit = discard[1]
 
+            tile_one = str(number - 2) + suit
+            tile_two = str(number - 1) + suit
 
-        action = turn_in_mahjong(player.hand, discard, from_left)
+            if tile_one in player.hand and tile_two in player.hand:
+                can_steal = True
 
+            tile_one = str(number - 1) + suit
+            tile_two = str(number + 1) + suit
 
-        if "Pong" in action or "Chow" in action:
-            print(f"{player.name} steals {discard}")
-            print(action)
+            if tile_one in player.hand and tile_two in player.hand:
+                can_steal = True
 
+            tile_one = str(number + 1) + suit
+            tile_two = str(number + 2) + suit
 
-            new_discard = choose_discard(player.hand)
+            if tile_one in player.hand and tile_two in player.hand:
+                can_steal = True
+
+        if can_steal:
+            print(f"{player.name} can steal {discard}")
+
+            if player.name == "You":
+                choice = input("Do you want to steal it? Type yes or no: ").strip().lower()
+
+                if choice != "yes":
+                    print("You passed.")
+                    continue
+
+            player.hand.append(discard)
+
+            if player.name == "You":
+                print("Your hand is:", sorted(player.hand))
+                new_discard = input("Choose a tile to discard: ").strip()
+
+                while new_discard not in player.hand:
+                    new_discard = input("Invalid tile. Pick a new tile to discard: ").strip()
+            else:
+                new_discard = choose_discard(player.hand)
+
             player.hand.remove(new_discard)
 
-
+            print(f"{player.name} steals {discard}")
             print(f"{player.name} discards {new_discard}")
 
 
@@ -561,10 +590,25 @@ def game_loop(game):
                 print("Game over.")
                 game_is_running = False
             else:
-                current_player_index = get_next_player_index(
+                
+                print("Steal check is running")
+                
+                stealer_index, new_discard = check_steal_options(
+                    game.players,
                     current_player_index,
-                    len(game.players)
+                    discard_tile
                 )
+
+                if stealer_index is not None:
+                    current_player_index = get_next_player_index(
+                        stealer_index,
+                        len(game.players)
+                    )
+                else:
+                    current_player_index = get_next_player_index(
+                        current_player_index,
+                        len(game.players)
+                    )
 
 
 def main():
@@ -603,5 +647,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
