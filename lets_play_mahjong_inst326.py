@@ -142,16 +142,23 @@ def is_winning_hand(hand):
     checks if the hand you have gives you a win
     
     Args:
-        hand (list): list of 14 tiles that you have
+    hand (list): list of 14 tiles that you have
     
     Returns:
-        bool: True if it is a winning hand, False if its not winning
+    bool: True if it is a winning hand, False if its not winning
     
     Side effects:
-        None
+    None
     
     Raises: 
-        None
+    None
+    
+    Author:
+    William Horan
+
+    Technique:
+    Comprehensions
+    
     """
     
     if len(hand) != 14:
@@ -177,16 +184,23 @@ def can_make_sets(hand):
     Checks if the remaining tiles can be split into sets
     
     Args:
-        hand(list): list of tiles left after removing a pair
+    hand(list): list of tiles left after removing a pair
     
     Returns:
-        bool: True if the remaining tiles can make valid sets, False if they cant
+    bool: True if the remaining tiles can make valid sets, False if they cant
     
     Side effects:
-        None
+    None
     
     Raises:
-        None
+    None
+    
+    Author:
+    William Horan
+
+    Technique:
+    Sequence unpacking 
+    
     """
     
     if len(hand) == 0:
