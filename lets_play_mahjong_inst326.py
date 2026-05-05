@@ -387,6 +387,10 @@ def steal_or_pass(hand, discard_tile):
     Raises: 
         ValueError: If the hand does not contain exactly 13 tiles 
     
+    Author: Noah Rosier
+    
+    Technique: List Comprehensions 
+    
     
     """
 
@@ -428,9 +432,17 @@ def player_turn(player, game, human_turn):
     Techniques: Use of a key function with the sorted command 
     
     Args: 
+        player (Player): Represents the player who's turn it is 
+        game (Mahjong): The current state of the Mahjong Game 
+        human_turn (bool): True if the player is human which requires user input
+            but false if it is the computers turn
     
     Returns: 
-    
+        tuple: (str or None): represents the status of the players turn and the
+                            discarded tile 
+    Side effects: 
+        Modifies the players hand and the game deck of the tiles that are still 
+        available for other players. Prints the players decison to the console. 
        
 
     """
