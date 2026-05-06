@@ -6,6 +6,8 @@
 
 **tiles.txt**: Text file containing 108 Mahjong tiles.
 
+**Group_Work_Test:** File from Collaborative Programming Exercise, can be ignored for purposes of the game.
+
 **README.md:** ReadMe file containing explanations on how to run and use the program, proper files, group member contributions, and annotated references. Essentially, this acts as a user guide to get started with playing our game of Mahjong. 
 
 
@@ -14,11 +16,8 @@ Step 1: Make sure the files, lets_play_mahjong_inst326.py, and tiles.txt, are sa
 
 Step 2: Open terminal (Command Prompt, Mac Terminal, Powershell, Git Bash, etc.) and access the folder that has both files saved in it. 
 
-Step 3: Run the program, type the following into the terminal, based on the system you're using: 
-   
-    Windows Version: python lets_play_mahjong.py
-   
-    Mac Version: python3 lets_play_mahjong.py
+Step 3: Run the program, type the following into the terminal (Windows)
+   python lets_play_mahjong_inst326
 
 ### **How to Use the Program:**
 
