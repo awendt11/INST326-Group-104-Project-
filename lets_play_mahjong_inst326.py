@@ -1,6 +1,7 @@
 import argparse 
 import json 
 import random
+import re
 
 def tiles_implementation(filename="tiles.txt"):
     """
@@ -338,7 +339,7 @@ def choose_discard(hand):
     # Hand must have 14 tiles
 
     for tile in hand:
-        if len(tile) != 2 or not tile[0].isdigit(): # conditional expression
+        if not re.fullmatch(r"\d[a-zA-Z]", tile): # Regular Expression
             raise ValueError("Tile representation is incorrect")
         # each tile must be 2 charactors long like 3b or 7d
 
@@ -486,16 +487,19 @@ def check_steal_options(players, current_index, discard):
         If someone steals it returns (player_index, new_discard)
         If nobody steals it returns (None, discard)
     """
-    for offset in range(1, len(players)):
-        player_index = (current_index + offset) % len(players)
+
+    next_player = (current_index + 1) % len(players)
+
+    for player_index in range(len(players)):
+
+        if player_index == current_index:
+            continue
+
         player = players[player_index]
 
-        can_steal = False
+        can_steal = True if player.hand.count(discard) >= 2 else False # conditional expression 
 
-        if player.hand.count(discard) >= 2:
-            can_steal = True
-
-        if offset == 1:
+        if player_index == next_player:
             number = int(discard[0])
             suit = discard[1]
 
@@ -543,9 +547,7 @@ def check_steal_options(players, current_index, discard):
             print(f"{player.name} steals {discard}")
             print(f"{player.name} discards {new_discard}")
 
-
             return player_index, new_discard
-
 
     return None, discard
 

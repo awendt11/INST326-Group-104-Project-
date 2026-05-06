@@ -23,8 +23,8 @@
 | tiles_implementation| Anna Wendt     | with statement                | 
 | steal_or_pass       | Noah Rosier    | list comprehension            |
 | player_turn         | Noah Rosier    | Use of a key function         | 
-| check_steal_options | Nathan Brock   |                               | 
-| choose_discard.     | Nathan Brock   | Conditional Expression        | 
+| check_steal_options | Nathan Brock   | Conditional Expression        | 
+| choose_discard      | Nathan Brock   | Regular Expression            | 
 | is_winning_hand     | William Horan  | comprehensions                |
 | can_make_sets       | William Horan  | sequence unpacking            | 
 
@@ -41,4 +41,6 @@ This source was used as a refresher, and reference guide for sequences in Python
 https://www.youtube.com/watch?v=qpYF-xmNMew
 
 https://rszalski.github.io/magicmethods/
+
+https://www.pythontutorial.net/python-regex/python-regex-fullmatch/#:~:text=The%20fullmatch()%20function%20returns,regular%20expression%2C%20or%20None%20otherwise.&text=In%20this%20syntax%3A,string%20specifies%20the%20input%20string.
 
