@@ -24,16 +24,18 @@ Step 3: Run the program, type the following into the terminal (Windows)
 
 ### **Contributions:**
 
-| Method/Function      | Primary Author | Technique(s) Demonstrated      |
-|---------------------|----------------|-------------------------------|
-| turn_in_mahjong     | Anna Wendt     | f-strings                     |
-| tiles_implementation| Anna Wendt     | with statement                | 
-| steal_or_pass       | Noah Rosier    | list comprehension            |
-| player_turn         | Noah Rosier    | Use of a key function         | 
-| check_steal_options | Nathan Brock   | Conditional Expression        | 
-| choose_discard      | Nathan Brock   | Regular Expression            | 
-| is_winning_hand     | William Horan  | comprehensions                |
-| can_make_sets       | William Horan  | sequence unpacking            | 
+| Method/Function       | Primary Author | Technique(s) Demonstrated      |
+|----------------------|----------------|-------------------------------|
+| turn_in_mahjong      | Anna Wendt     | f-strings                     |
+| tiles_implementation | Anna Wendt     | with statement                |
+| tile_classification  | Anna Wendt     | N/A                           |
+| hand_summary         | Anna Wendt     | N/A                           |
+| steal_or_pass        | Noah Rosier    | list comprehension            |
+| player_turn          | Noah Rosier    | Use of a key function         |
+| check_steal_options  | Nathan Brock   | Conditional Expression        |
+| choose_discard       | Nathan Brock   | Regular Expression            |
+| is_winning_hand      | William Horan  | comprehensions                |
+| can_make_sets        | William Horan  | sequence unpacking            |
 
 
 
