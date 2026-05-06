@@ -10,7 +10,11 @@
 
 
 ### **How to Run the Program from the Command Line:**
-
+Step 1: Make sure the files, lets_play_mahjong_inst326.py, and tiles.txt, are saved in the same directory.
+Step 2: Open terminal (Command Prompt, Mac Terminal, Powershell, Git Bash, etc.) and access the folder that has both files saved in it. 
+Step 3: Run the program, type the following into the terminal, based on the system you're using: 
+    Windows Version: python lets_play_mahjong.py
+    Mac Version: python3 lets_play_mahjong.py
 
 ### **How to Use the Program:**
 
