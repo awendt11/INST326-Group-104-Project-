@@ -6,27 +6,45 @@
 
 **tiles.txt**: Text file containing 108 Mahjong tiles.
 
+**Group_Work_Test:** File from Collaborative Programming Exercise, can be ignored for purposes of the game.
+
 **README.md:** ReadMe file containing explanations on how to run and use the program, proper files, group member contributions, and annotated references. Essentially, this acts as a user guide to get started with playing our game of Mahjong. 
 
 
 ### **How to Run the Program from the Command Line:**
+Step 1: Make sure the files, lets_play_mahjong_inst326.py, and tiles.txt, are saved in the same directory.
 
+Step 2: Open terminal (Command Prompt, Mac Terminal, Powershell, Git Bash, etc.) and access the folder that has both files saved in it. 
 
-### **How to Use the Program:**
+Step 3: Run the program, type the following into the terminal (Windows)
+   python lets_play_mahjong_inst326
 
+### **How to Use the Program and How to Play Python Mahjong:**
+
+-Mahjong tiles are shuffled from tiles.txt
+-Each player is given 13 tiles at the beginning of the game, with the first player being the human player, and the remaining 2 being computer players
+-When it is your turn: 
+   A tile will be drawn from the deck, and you will have your current hand displayed. 
+   You will then we asked to pick a tile to discard. 
+-When a tile is discarded, the program will review if other players can form Pong or Chow
+   Pong: Formed by two matching tiles
+   Chow: Formed by a sequence of three consecutive numbers in the same suit, with a discarded tile needing to be included that came from the player on the left
+-The game keeps going until a player wins or the deck is empty
 
 ### **Contributions:**
 
-| Method/Function      | Primary Author | Technique(s) Demonstrated      |
-|---------------------|----------------|-------------------------------|
-| turn_in_mahjong     | Anna Wendt     | f-strings                     |
-| tiles_implementation| Anna Wendt     | with statement                | 
-| steal_or_pass       | Noah Rosier    | list comprehension            |
-| player_turn         | Noah Rosier    | Use of a key function         | 
-| check_steal_options | Nathan Brock   |                               | 
-| choose_discard.     | Nathan Brock   | Conditional Expression        | 
-|                     | William Horan  |                               |
-|                     | William Horan  |                               | 
+| Method/Function       | Primary Author | Technique(s) Demonstrated      |
+|----------------------|----------------|-------------------------------|
+| turn_in_mahjong      | Anna Wendt     | f-strings                     |
+| tiles_implementation | Anna Wendt     | with statement                |
+| tile_classification  | Anna Wendt     | N/A                           |
+| hand_summary         | Anna Wendt     | N/A                           |
+| steal_or_pass        | Noah Rosier    | list comprehension            |
+| player_turn          | Noah Rosier    | Use of a key function         |
+| check_steal_options  | Nathan Brock   | Conditional Expression        |
+| choose_discard       | Nathan Brock   | Regular Expression            |
+| is_winning_hand      | William Horan  | comprehensions                |
+| can_make_sets        | William Horan  | sequence unpacking            |
 
 
 
@@ -41,4 +59,6 @@ This source was used as a refresher, and reference guide for sequences in Python
 https://www.youtube.com/watch?v=qpYF-xmNMew
 
 https://rszalski.github.io/magicmethods/
+
+https://www.pythontutorial.net/python-regex/python-regex-fullmatch/#:~:text=The%20fullmatch()%20function%20returns,regular%20expression%2C%20or%20None%20otherwise.&text=In%20this%20syntax%3A,string%20specifies%20the%20input%20string.
 

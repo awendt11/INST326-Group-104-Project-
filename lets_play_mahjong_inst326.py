@@ -1,5 +1,6 @@
 import argparse 
 import random
+import re
 
 def tiles_implementation(filename="tiles.txt"):
     """
@@ -141,16 +142,23 @@ def is_winning_hand(hand):
     checks if the hand you have gives you a win
     
     Args:
-        hand (list): list of 14 tiles that you have
+    hand (list): list of 14 tiles that you have
     
     Returns:
-        bool: True if it is a winning hand, False if its not winning
+    bool: True if it is a winning hand, False if its not winning
     
     Side effects:
-        None
+    None
     
     Raises: 
-        None
+    None
+    
+    Author:
+    William Horan
+
+    Technique:
+    Comprehensions
+    
     """
     
     if len(hand) != 14:
@@ -163,11 +171,8 @@ def is_winning_hand(hand):
             
             if hand[i] == hand[j]:
                 
-                new_hand = []
-                
-                for k in range(len(hand)):
-                    if k != i and k != j:
-                        new_hand.append(hand[k])
+                new_hand = [hand[k] for k in range(len(hand)) 
+                            if k != i and k != j]
                         
                 if can_make_sets(new_hand):
                     return True
@@ -179,16 +184,23 @@ def can_make_sets(hand):
     Checks if the remaining tiles can be split into sets
     
     Args:
-        hand(list): list of tiles left after removing a pair
+    hand(list): list of tiles left after removing a pair
     
     Returns:
-        bool: True if the remaining tiles can make valid sets, False if they cant
+    bool: True if the remaining tiles can make valid sets, False if they cant
     
     Side effects:
-        None
+    None
     
     Raises:
-        None
+    None
+    
+    Author:
+    William Horan
+
+    Technique:
+    Sequence unpacking 
+    
     """
     
     if len(hand) == 0:
@@ -213,8 +225,8 @@ def can_make_sets(hand):
         if can_make_sets(sorted(new_hand)):
             return True
     if len(first) == 2 and first[0].isdigit():
-        number = int(first[0])
-        suit = first[1]
+        number_text, suit = first
+        number = int(number_text)
         
         second = str(number + 1) + suit
         third = str(number + 2) + suit
@@ -277,7 +289,7 @@ def choose_discard(hand):
     # Hand must have 14 tiles
 
     for tile in hand:
-        if len(tile) != 2 or not tile[0].isdigit(): # conditional expression
+        if not re.fullmatch(r"\d[a-zA-Z]", tile): # Regular Expression
             raise ValueError("Tile representation is incorrect")
         # each tile must be 2 charactors long like 3b or 7d
 
@@ -326,6 +338,10 @@ def steal_or_pass(hand, discard_tile):
     Raises: 
         ValueError: If the hand does not contain exactly 13 tiles 
     
+    Author: Noah Rosier
+    
+    Technique: List Comprehensions 
+    
     
     """
 
@@ -367,9 +383,17 @@ def player_turn(player, game, human_turn):
     Techniques: Use of a key function with the sorted command 
     
     Args: 
+        player (Player): Represents the player who's turn it is 
+        game (Mahjong): The current state of the Mahjong Game 
+        human_turn (bool): True if the player is human which requires user input
+            but false if it is the computers turn
     
     Returns: 
-    
+        tuple: (str or None): represents the status of the players turn and the
+                            discarded tile 
+    Side effects: 
+        Modifies the players hand and the game deck of the tiles that are still 
+        available for other players. Prints the players decison to the console. 
        
 
     """
@@ -413,37 +437,67 @@ def check_steal_options(players, current_index, discard):
         If someone steals it returns (player_index, new_discard)
         If nobody steals it returns (None, discard)
     """
-    for offset in range(1, len(players)):
 
+    next_player = (current_index + 1) % len(players)
 
-        player_index = (current_index + offset) % len(players) # next player
+    for player_index in range(len(players)):
+
+        if player_index == current_index:
+            continue
+
         player = players[player_index]
 
+        can_steal = True if player.hand.count(discard) >= 2 else False # conditional expression 
 
-        # player after can discard
-        if offset == 1:
-            from_left = True
-        else:
-            from_left = False
+        if player_index == next_player:
+            number = int(discard[0])
+            suit = discard[1]
 
+            tile_one = str(number - 2) + suit
+            tile_two = str(number - 1) + suit
 
-        action = turn_in_mahjong(player.hand, discard, from_left)
+            if tile_one in player.hand and tile_two in player.hand:
+                can_steal = True
 
+            tile_one = str(number - 1) + suit
+            tile_two = str(number + 1) + suit
 
-        if "Pong" in action or "Chow" in action:
-            print(f"{player.name} steals {discard}")
-            print(action)
+            if tile_one in player.hand and tile_two in player.hand:
+                can_steal = True
 
+            tile_one = str(number + 1) + suit
+            tile_two = str(number + 2) + suit
 
-            new_discard = choose_discard(player.hand)
+            if tile_one in player.hand and tile_two in player.hand:
+                can_steal = True
+
+        if can_steal:
+            print(f"{player.name} can steal {discard}")
+
+            if player.name == "You":
+                choice = input("Do you want to steal it? Type yes or no: ").strip().lower()
+
+                if choice != "yes":
+                    print("You passed.")
+                    continue
+
+            player.hand.append(discard)
+
+            if player.name == "You":
+                print("Your hand is:", sorted(player.hand))
+                new_discard = input("Choose a tile to discard: ").strip()
+
+                while new_discard not in player.hand:
+                    new_discard = input("Invalid tile. Pick a new tile to discard: ").strip()
+            else:
+                new_discard = choose_discard(player.hand)
+
             player.hand.remove(new_discard)
 
-
+            print(f"{player.name} steals {discard}")
             print(f"{player.name} discards {new_discard}")
 
-
             return player_index, new_discard
-
 
     return None, discard
 
@@ -511,10 +565,25 @@ def game_loop(game):
                 print("Game over.")
                 game_is_running = False
             else:
-                current_player_index = get_next_player_index(
+                
+                print("Steal check is running")
+                
+                stealer_index, new_discard = check_steal_options(
+                    game.players,
                     current_player_index,
-                    len(game.players)
+                    discard_tile
                 )
+
+                if stealer_index is not None:
+                    current_player_index = get_next_player_index(
+                        stealer_index,
+                        len(game.players)
+                    )
+                else:
+                    current_player_index = get_next_player_index(
+                        current_player_index,
+                        len(game.players)
+                    )
 
 
 def main():
@@ -553,5 +622,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
