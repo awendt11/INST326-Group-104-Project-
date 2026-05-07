@@ -1,6 +1,6 @@
 import argparse 
-import json 
 import random
+import re
 
 def tiles_implementation(filename="tiles.txt"):
     """
@@ -262,55 +262,6 @@ def can_make_sets(hand):
             if can_make_sets(sorted(new_hand)):
                 return True
     return False
-
-
-def tile_classification(tile_count):
-    """
-    Classifies a tile according to how many times its in an individual's hand.
-    
-    Args:
-        tile_count: int, Number of times a tile appears.
-        
-    Returns:
-        str: A keyword that describes how many times the tile occurs in an individual's hand.
-        Including single, pair and multiple. 
-        
-    Side effects:
-        None
-        
-    Raises:
-        None
-        
-    Author: Anna Wendt
-    """
-    
-    return "single" if tile_count == 1 else "pair" if tile_count == 2 else "multiple"
-
-
-def hand_summary(hand):
-    """
-    Review and summarize hand in Mahjong to analyze tiles and duplicates.
-    
-    Args:
-        hand: (list of str): Tiles in players hand
-        
-    Returns:
-        dict: Information about the players hand
-        
-    Author: Anna Wendt
-    """
-    
-    tile_set = set(hand)
-    
-    counts = {tile: hand.count(tile) for tile in tile_set}
-    
-    repeat_tiles = {tile for tile in tile_set if counts[tile] > 1}
-    
-    return {
-        "tile_set" : tile_set,
-        "counts" : counts,
-        "repeat_tiles" : repeat_tiles
-    }
     
 
 def choose_discard(hand):
@@ -341,7 +292,7 @@ def choose_discard(hand):
     # Hand must have 14 tiles
 
     for tile in hand:
-        if len(tile) != 2 or not tile[0].isdigit(): # conditional expression
+        if not re.fullmatch(r"\d[a-zA-Z]", tile): # Regular Expression
             raise ValueError("Tile representation is incorrect")
         # each tile must be 2 charactors long like 3b or 7d
 
@@ -390,6 +341,10 @@ def steal_or_pass(hand, discard_tile):
     Raises: 
         ValueError: If the hand does not contain exactly 13 tiles 
     
+    Author: Noah Rosier
+    
+    Technique: List Comprehensions 
+    
     
     """
 
@@ -431,9 +386,17 @@ def player_turn(player, game, human_turn):
     Techniques: Use of a key function with the sorted command 
     
     Args: 
+        player (Player): Represents the player who's turn it is 
+        game (Mahjong): The current state of the Mahjong Game 
+        human_turn (bool): True if the player is human which requires user input
+            but false if it is the computers turn
     
     Returns: 
-    
+        tuple: (str or None): represents the status of the players turn and the
+                            discarded tile 
+    Side effects: 
+        Modifies the players hand and the game deck of the tiles that are still 
+        available for other players. Prints the players decison to the console. 
        
 
     """
@@ -483,16 +446,19 @@ def check_steal_options(players, current_index, discard):
         If someone steals it returns (player_index, new_discard)
         If nobody steals it returns (None, discard)
     """
-    for offset in range(1, len(players)):
-        player_index = (current_index + offset) % len(players)
+
+    next_player = (current_index + 1) % len(players)
+
+    for player_index in range(len(players)):
+
+        if player_index == current_index:
+            continue
+
         player = players[player_index]
 
-        can_steal = False
+        can_steal = True if player.hand.count(discard) >= 2 else False # conditional expression 
 
-        if player.hand.count(discard) >= 2:
-            can_steal = True
-
-        if offset == 1:
+        if player_index == next_player:
             number = int(discard[0])
             suit = discard[1]
 
@@ -541,9 +507,7 @@ def check_steal_options(players, current_index, discard):
             print(f"{player.name} steals {discard}")
             print(f"{player.name} discards {new_discard}")
 
-
             return player_index, new_discard
-
 
     return None, discard
 
