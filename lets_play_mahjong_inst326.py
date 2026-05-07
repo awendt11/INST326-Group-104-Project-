@@ -137,7 +137,7 @@ def turn_in_mahjong(hand, discard_tile, from_left):
     return "No moves can be made. Next turn!"
 
 
-def is_winning_hand(hand):
+def is_winning_hand(hand, required_tiles=14):
     """
     checks if the hand you have gives you a win
     
@@ -157,11 +157,11 @@ def is_winning_hand(hand):
     William Horan
 
     Technique:
-    Comprehensions
+    Optional parameters/keyword arguments
     
     """
     
-    if len(hand) != 14:
+    if len(hand) != required_tiles:
         return False
     
     hand = sorted(hand)
@@ -171,8 +171,11 @@ def is_winning_hand(hand):
             
             if hand[i] == hand[j]:
                 
-                new_hand = [hand[k] for k in range(len(hand)) 
-                            if k != i and k != j]
+                new_hand = []
+                
+                for k in range(len(hand)):
+                    if k != i and k != j:
+                        new_hand.append(hand[k])
                         
                 if can_make_sets(new_hand):
                     return True
@@ -437,8 +440,14 @@ def player_turn(player, game, human_turn):
     if len(game.tile_deck) == 0: 
         return f"(Deck is empty)", None 
     
+    print()
+    print("*" * 40)
+    print(f"{player.name}'s turn")
+    print("*" * 40)
+    
     tile = game.tile_deck.pop()
     player.hand.append(tile)
+    
 
     print(f"{player.name} draws {tile}")
     
@@ -518,7 +527,8 @@ def check_steal_options(players, current_index, discard):
             player.hand.append(discard)
 
             if player.name == "You":
-                print("Your hand is:", sorted(player.hand))
+                sorted_hand = sorted(player.hand, key=lambda tile: (tile[1], int(tile[0])))
+                print("Your hand is:", sorted_hand)
                 new_discard = input("Choose a tile to discard: ").strip()
 
                 while new_discard not in player.hand:
