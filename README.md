@@ -41,7 +41,7 @@ Step 3: Run the program, type the following into the terminal (Windows)
 | `player_turn`          | Noah Rosier    | Use of a key function     |
 | `check_steal_options`  | Nathan Brock   | Conditional Expression    |
 | `choose_discard`       | Nathan Brock   | Regular Expression        |
-| `is_winning_hand`      | William Horan  | comprehensions            |
+| `is_winning_hand`      | William Horan  | Optional Parameters       |
 | `can_make_sets`        | William Horan  | sequence unpacking        |
 
 
