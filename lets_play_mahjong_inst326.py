@@ -1,5 +1,4 @@
 import argparse 
-import json 
 import random
 
 def tiles_implementation(filename="tiles.txt"):
@@ -248,55 +247,6 @@ def can_make_sets(hand):
             if can_make_sets(sorted(new_hand)):
                 return True
     return False
-
-
-def tile_classification(tile_count):
-    """
-    Classifies a tile according to how many times its in an individual's hand.
-    
-    Args:
-        tile_count: int, Number of times a tile appears.
-        
-    Returns:
-        str: A keyword that describes how many times the tile occurs in an individual's hand.
-        Including single, pair and multiple. 
-        
-    Side effects:
-        None
-        
-    Raises:
-        None
-        
-    Author: Anna Wendt
-    """
-    
-    return "single" if tile_count == 1 else "pair" if tile_count == 2 else "multiple"
-
-
-def hand_summary(hand):
-    """
-    Review and summarize hand in Mahjong to analyze tiles and duplicates.
-    
-    Args:
-        hand: (list of str): Tiles in players hand
-        
-    Returns:
-        dict: Information about the players hand
-        
-    Author: Anna Wendt
-    """
-    
-    tile_set = set(hand)
-    
-    counts = {tile: hand.count(tile) for tile in tile_set}
-    
-    repeat_tiles = {tile for tile in tile_set if counts[tile] > 1}
-    
-    return {
-        "tile_set" : tile_set,
-        "counts" : counts,
-        "repeat_tiles" : repeat_tiles
-    }
     
 
 def choose_discard(hand):
