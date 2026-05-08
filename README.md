@@ -24,6 +24,7 @@ Step 3: Run the program, type the following into the terminal (Windows)
 -Mahjong tiles are shuffled from tiles.txt
 
 -Each player is given 13 tiles at the beginning of the game, with the first player being the human player, and the remaining 2 being computer players
+
 -When it is your turn: 
 
    A tile will be drawn from the deck, and you will have your current hand displayed. 
