@@ -36,12 +36,18 @@ class Mahjong:
     """
     def __init__(self, player_names): 
         """
-        Intializes the deck with the tiles. 
+        Intializes the Mahjong game, shuffles the deck, and creates the players. 
         
         Args: 
         
             player_names (list): A list of strings containg the name of players 
-        
+        Returns: 
+            None 
+        Side Effects: 
+            Loads the tile deck from the txt file, shuffles the eck, and creates the 
+            players. 
+            
+        Author: Noah Rosier 
          """
         
         self.tile_deck = tiles_implementation()
@@ -56,6 +62,12 @@ class Mahjong:
     def deal(self): 
         """
         Deals 13 tiles to each player from the tile deck
+        
+        Args: 
+            None 
+        Returns: 
+            None 
+        Author: Noah Rosier 
         """
         for player in self.players: 
             for item in range(13): 
@@ -73,6 +85,21 @@ class Player:
     """
     
     def __init__(self, name): 
+        """
+        Initializes the players. 
+        
+        Args: 
+            name (str): the players name 
+            
+        Returns: 
+            None 
+        Side Effects: 
+            creates an empty hand for each player in the form of a list 
+            
+        Author: Noah Rosier 
+        
+        
+        """
         self.name = name 
         self.hand = [] 
 
@@ -286,6 +313,7 @@ def choose_discard(hand):
         suite type
     
     Author: Nathan Brock
+    Technique Used: Regular Expressions 
     """
     if len(hand) != 14:
         raise ValueError("Hand must contain exactly 14 tiles") 
@@ -445,6 +473,12 @@ def check_steal_options(players, current_index, discard):
     Returns:
         If someone steals it returns (player_index, new_discard)
         If nobody steals it returns (None, discard)
+    Side effects: 
+        Can modify a players hand depending on the move they make and 
+        prints messages to the console to for user input on whether to steal a tile 
+        or not. 
+    Author: Nathan Brock 
+    Techniques used: Condition Expressions 
     """
 
     next_player = (current_index + 1) % len(players)
@@ -527,6 +561,7 @@ def get_next_player_index(current_index, number_of_players):
 
     Raises:
         None
+    Author: William Horan 
     """
 
     current_index = current_index + 1
@@ -552,6 +587,7 @@ def game_loop(game):
 
     Raises:
         None
+    Author: William Horan 
     """
 
     current_player_index = 0
@@ -611,6 +647,8 @@ def main():
 
     Raises:
         None
+    
+    Author: William Horan 
     """
 
     parser = argparse.ArgumentParser()
