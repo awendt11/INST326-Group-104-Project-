@@ -22,13 +22,21 @@ Step 3: Run the program, type the following into the terminal (Windows)
 ### **How to Use the Program and How to Play Python Mahjong:**
 
 -Mahjong tiles are shuffled from tiles.txt
+
 -Each player is given 13 tiles at the beginning of the game, with the first player being the human player, and the remaining 2 being computer players
+
 -When it is your turn: 
+
    A tile will be drawn from the deck, and you will have your current hand displayed. 
+   
    You will then we asked to pick a tile to discard. 
+   
 -When a tile is discarded, the program will review if other players can form Pong or Chow
+
    Pong: Formed by two matching tiles
+   
    Chow: Formed by a sequence of three consecutive numbers in the same suit, with a discarded tile needing to be included that came from the player on the left
+   
 -The game keeps going until a player wins or the deck is empty
 
 ### **Contributions:**
