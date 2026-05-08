@@ -286,23 +286,23 @@ def choose_discard(hand):
     """
     if len(hand) != 14:
         raise ValueError("Hand must contain exactly 14 tiles") 
-    # Hand must have 14 tiles
+    
 
     for tile in hand:
-        if not re.fullmatch(r"\d[a-zA-Z]", tile): # Regular Expression
+        if not re.fullmatch(r"\d[a-zA-Z]", tile): 
             raise ValueError("Tile representation is incorrect")
-        # each tile must be 2 charactors long like 3b or 7d
+        
 
-    def score_tile(tile, tiles): # look at each tile
+    def score_tile(tile, tiles): 
         score = 0 
-        # set variable for score. lowest score (how useful it is) will be removed
-        number = int(tile[0]) # identify number for sequence
-        suit = tile[1] # identify suits
+        
+        number = int(tile[0]) 
+        suit = tile[1] 
 
-        if tiles.count(tile) >= 2: # checks how many times tile appears
+        if tiles.count(tile) >= 2: 
             score += 3  
 
-        #check if tile has any concurent tiles (ex. 1b, 2b, 3b)
+        
         if f"{number-1}{suit}" in tiles:
             score += 1
         if f"{number+1}{suit}" in tiles:
@@ -313,7 +313,7 @@ def choose_discard(hand):
             score += 1
 
         return score
-    worst_tile = min(hand, key=lambda tile: score_tile(tile, hand)) # which tile looks best to discard
+    worst_tile = min(hand, key=lambda tile: score_tile(tile, hand))
     return worst_tile
 
 def steal_or_pass(hand, discard_tile):
@@ -447,7 +447,7 @@ def check_steal_options(players, current_index, discard):
 
         player = players[player_index]
 
-        can_steal = True if player.hand.count(discard) >= 2 else False # conditional expression 
+        can_steal = True if player.hand.count(discard) >= 2 else False
 
         if player_index == next_player:
             number = int(discard[0])
