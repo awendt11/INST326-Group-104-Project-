@@ -405,14 +405,22 @@ def player_turn(player, game, human_turn):
     
     print()
     print("*" * 40)
-    print(f"{player.name}'s turn")
+    
+    if player.name == "You":
+        print("Your turn")
+    else:
+        print(f"{player.name}'s turn")
+    
     print("*" * 40)
     
     tile = game.tile_deck.pop()
     player.hand.append(tile)
     
 
-    print(f"{player.name} draws {tile}")
+    if player.name == "You":
+        print(f"You draw {tile}")
+    else:
+        print(f"{player.name} draws {tile}")
     
     if is_winning_hand(player.hand): 
         print(f"{player.name} wins")
