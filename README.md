@@ -53,9 +53,12 @@ This source was used to understand the basic rules of Chinese Mahjong, and there
 Gruppetta, S. (2024, May). Python Sequences: A Comprehensive Guide. Realpython.com; Real Python. https://realpython.com/python-sequences/
 This source was used as a refresher, and reference guide for sequences in Python. It was used for the first function of code, which goes through a turn in Mahjong. The game of Mahjong, and the tiles themselves, is a very sequenced-based game, so this source gave more information on how to apply those sequences to Python. 
 
-https://www.youtube.com/watch?v=qpYF-xmNMew
+Python Tutorial. (2021, December 10). Python Regex fullmatch. https://www.pythontutorial.net/python-regex/python-regex-fullmatch/#:~:text=The%20fullmatch()%20function%20returns,regular%20expression%2C%20or%20None%20otherwise.&text=In%20this%20syntax%3A,string%20specifies%20the%20input%20string. This sourced was used to help with the regular expression technique
+in our program. It was used to learn how to do use fullmatch() in Regex and create the regular expression in our code. 
 
-https://rszalski.github.io/magicmethods/
+South China Morning Post. (2018, August 12). Learn how to play mahjong in 2.5 minutes [Video]. YouTube. https://www.youtube.com/watch?v=qpYF-xmNMew
+This source was used to help understand the rules of Mahjiong and the aspects of the game. It was helpful in giving information how to apply certain 
+steps of Mahjong into python. 
 
-https://www.pythontutorial.net/python-regex/python-regex-fullmatch/#:~:text=The%20fullmatch()%20function%20returns,regular%20expression%2C%20or%20None%20otherwise.&text=In%20this%20syntax%3A,string%20specifies%20the%20input%20string.
+
 
