@@ -10,7 +10,7 @@ def tiles_implementation(filename="tiles.txt"):
         filename: (str): File name
         
     Returns:
-        list: List of the tile strings
+        list: List of the tiles 
         
     Author: Anna
     Includes: with statement
@@ -39,12 +39,12 @@ class Mahjong:
         Intializes the Mahjong game, shuffles the deck, and creates the players. 
         
         Args: 
-        
+
             player_names (list): A list of strings containg the name of players 
         Returns: 
             None 
         Side Effects: 
-            Loads the tile deck from the txt file, shuffles the eck, and creates the 
+            Loads the tile deck from the txt file, shuffles the deck, and creates the 
             players. 
             
         Author: Noah Rosier 
@@ -67,6 +67,8 @@ class Mahjong:
             None 
         Returns: 
             None 
+        Side effects: 
+            removes tiles from the deck and deals 13 to each player 
         Author: Noah Rosier 
         """
         for player in self.players: 
@@ -108,7 +110,7 @@ class Player:
 
 def turn_in_mahjong(hand, discard_tile, from_left):
     """
-    Run one Mahjong turn and determine what actions are allowed after a tile is discarded. 
+    Runs one Mahjong turn and determines what actions are allowed after a tile is discarded. 
 
     Args: 
 	    hand (list of strings): The tiles currently in the player's hand
@@ -355,9 +357,9 @@ def steal_or_pass(hand, discard_tile):
     
     
     Args: 
-        hand(list of strings): A list of 13 tile identifiers representing the players 
-            current concealed hand 
-        discard_tile (str): A single tile identifier representing the tile just 
+        hand(list of strings): A list of 13 tiles in a players current 
+            current hand 
+        discard_tile (str): A single tile representing the tile just 
             discarded by another player 
         
     Returns 
@@ -414,9 +416,9 @@ def player_turn(player, game, human_turn):
     Techniques: Use of a key function with the sorted command 
     
     Args: 
-        player (Player): Represents the player who's turn it is 
-        game (Mahjong): The current state of the Mahjong Game 
-        human_turn (bool): True if the player is human which requires user input
+        player: Represents the player who's turn it is 
+        game: The current state of the Mahjong Game 
+        human_turn: True if the player is human which requires user input
             but false if it is the computers turn
     
     Returns: 
