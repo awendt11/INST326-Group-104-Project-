@@ -618,7 +618,7 @@ def game_loop(game):
             result, discard_tile = player_turn(current_player, game, human_turn)
 
             if result == "win":
-                print("Game over.")
+                print("THE GAME IS OVER!!")
                 game_is_running = False
             else:
                 
